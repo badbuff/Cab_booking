@@ -1,2 +1,10 @@
-package com.example.cabBooking.dto;public class AuthResponse {
+package com.example.cabBooking.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public class AuthResponse {
+    private String token;
 }
