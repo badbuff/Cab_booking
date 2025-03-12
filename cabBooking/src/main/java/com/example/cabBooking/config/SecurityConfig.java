@@ -24,13 +24,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable()) // ✅ Disable CSRF for API usage
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // Allow login & register APIs
-                        .anyRequest().authenticated() // Protect all other APIs
+                        .requestMatchers("/api/auth/**").permitAll()  // ✅ Allow access to login & register
+                        .requestMatchers("/public/**").permitAll()  // ✅ Example public API
+                        .anyRequest().authenticated()  // 🔒 Secure other APIs
                 )
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless session for JWT
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class); // JWT filter before authentication
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // ✅ Use JWT authentication
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

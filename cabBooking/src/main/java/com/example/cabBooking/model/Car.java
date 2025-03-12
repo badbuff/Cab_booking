@@ -1,2 +1,4 @@
-package com.example.cabBooking.model;public class Car {
+package com.example.cabBooking.model;
+
+public class Car {
 }

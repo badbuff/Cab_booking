@@ -10,11 +10,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
-@Component // Marks this class as a Spring-managed Bean
+@Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
@@ -29,7 +28,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {

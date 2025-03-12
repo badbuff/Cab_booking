@@ -1,2 +1,4 @@
-package com.example.cabBooking.controller;public class BookingController {
+package com.example.cabBooking.controller;
+
+public class BookingController {
 }

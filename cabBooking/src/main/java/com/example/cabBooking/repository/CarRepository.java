@@ -1,2 +1,4 @@
-package com.example.cabBooking.repository;public class CarRepository {
+package com.example.cabBooking.repository;
+
+public class CarRepository {
 }

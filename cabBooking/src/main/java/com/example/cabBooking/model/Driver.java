@@ -1,2 +1,4 @@
-package com.example.cabBooking.model;public class Driver {
+package com.example.cabBooking.model;
+
+public class Driver {
 }
