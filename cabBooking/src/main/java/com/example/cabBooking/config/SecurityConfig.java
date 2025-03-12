@@ -26,9 +26,9 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // ✅ Disable CSRF for API usage
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()  // ✅ Allow access to login & register
-                        .requestMatchers("/public/**").permitAll()  // ✅ Example public API
-                        .anyRequest().authenticated()  // 🔒 Secure other APIs
+                        .requestMatchers("/api/auth/**").permitAll()  // ✅ Allow login & register (public)
+                        .requestMatchers("/api/bookings/**").authenticated()  // 🔒 Require authentication for bookings
+                        .anyRequest().authenticated()  // 🔒 Secure all other APIs
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // ✅ Use JWT authentication
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
