@@ -2,7 +2,6 @@ package com.example.cabBooking.service;
 
 import com.example.cabBooking.dto.AuthRequest;
 import com.example.cabBooking.dto.AuthResponse;
-import com.example.cabBooking.model.User;
 import com.example.cabBooking.repository.UserRepository;
 import com.example.cabBooking.security.JwtUtil;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
+
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
@@ -33,6 +33,6 @@ public class AuthService {
         UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
         String token = jwtUtil.generateToken(userDetails);
 
-        return new AuthResponse(token);
+        return new AuthResponse(token); // ✅ Fix: Ensure AuthResponse has a constructor with String token
     }
 }
